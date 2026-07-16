@@ -6,9 +6,9 @@ services:
       context: ./dpp-api
       dockerfile: Dockerfile
     ports:
-      - "3001:3001"
+      - "3011:3011"
     environment:
-      - PORT=3001
+      - PORT=3011
       - NODE_ENV=production
     volumes:
       - api-data:/app/data
@@ -19,9 +19,9 @@ services:
       context: ./dpp-web
       dockerfile: Dockerfile
     ports:
-      - "3000:3000"
+      - "3010:3010"
     environment:
-      - NUXT_PUBLIC_API_BASE=http://api:3001/api/v1
+      - NUXT_PUBLIC_API_BASE=http://api:3011/api/v1
     depends_on:
       - api
     restart: unless-stopped

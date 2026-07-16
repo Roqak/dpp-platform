@@ -32,13 +32,13 @@
 
 ## 🌐 Live Demo
 
-| Service | URL | Status |
-|---------|-----|--------|
-| **Web App** | https://dpp.ashlabs.xyz | 🟡 Staging (no services yet) |
-| **API** | https://dpp-api.ashlabs.xyz | 🟡 Staging |
-| **Swagger Docs** | https://dpp-api.ashlabs.xyz/api/docs | 🟡 Staging |
+| Service | URL | Local Port | Status |
+|---------|-----|------------|--------|
+| **Web App** | https://dpp.ashlabs.xyz | `localhost:3010` | 🟡 Waiting for build |
+| **API** | https://dpp-api.ashlabs.xyz | `localhost:3011` | 🟡 Waiting for build |
+| **Swagger Docs** | https://dpp-api.ashlabs.xyz/api/docs | — | 🟡 Waiting for build |
 
-*Both endpoints route through Cloudflare Tunnel. Services need to be started locally or via Docker.*
+*Ports 3010/3011 chosen to avoid conflict with existing services on 3000/3001.*
 
 ## Quick Start
 
@@ -50,13 +50,13 @@ cd dpp-platform
 # 2. API
 cd dpp-api
 npm install
-npm run start:dev        # → http://localhost:3001/api/v1
-# Swagger: http://localhost:3001/api/docs
+npm run start:dev        # → http://localhost:3011/api/v1
+# Swagger: http://localhost:3011/api/docs
 
 # 3. Web (new terminal)
 cd ../dpp-web
 npm install
-npm run dev              # → http://localhost:3000
+npm run dev              # → http://localhost:3010
 
 # Or use Docker Compose
 docker-compose up --build
@@ -75,7 +75,7 @@ docker-compose up --build
 ### Example: Create Passport
 
 ```bash
-curl -X POST http://localhost:3001/api/v1/passports \\
+curl -X POST http://localhost:3011/api/v1/passports \\
   -H "Content-Type: application/json" \\
   -d '{
     "productName": "Nigerian Cocoa Beans",
@@ -158,15 +158,15 @@ To deploy your local changes to the live URL:
 
 ```bash
 # Start the API
-cd dpp-api && npm run start:prod    # Serves on localhost:3001
+cd dpp-api && npm run start:prod    # Serves on localhost:3011
 
 # Start the Web app
-cd dpp-web && npm run start          # Serves on localhost:3000
+cd dpp-web && npm run start          # Serves on localhost:3010
 ```
 
 The Cloudflare Tunnel (`cloudflared-dpp.service`) automatically routes:
-- `https://dpp.ashlabs.xyz` → `http://localhost:3000`
-- `https://dpp-api.ashlabs.xyz` → `http://localhost:3001`
+- `https://dpp.ashlabs.xyz` → `http://localhost:3010`
+- `https://dpp-api.ashlabs.xyz` → `http://localhost:3011`
 
 ### Option 2: Railway (Production)
 
@@ -195,8 +195,8 @@ docker-compose up --build
 
 | Variable | Default | Description |
 |----------|---------|-------------|
-| `PORT` | `3001` | API server port |
-| `NUXT_PUBLIC_API_BASE` | `http://localhost:3001/api/v1` | Frontend API URL |
+| `PORT` | `3011` | API server port |
+| `NUXT_PUBLIC_API_BASE` | `http://localhost:3011/api/v1` | Frontend API URL |
 
 ---
 

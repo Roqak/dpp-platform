@@ -11,8 +11,8 @@
 ### Architecture
 - **Monorepo:** `dpp-api/` (NestJS) + `dpp-web/` (Nuxt 3) + `docker-compose.yml`
 - **Database:** SQLite via TypeORM, auto-sync, zero-config
-- **API Base:** `http://localhost:3001/api/v1`
-- **Web Base:** `http://localhost:3000`
+- **API Base:** `http://localhost:3011/api/v1`
+- **Web Base:** `http://localhost:3010`
 
 ### API (`dpp-api/`)
 | File | Status |
