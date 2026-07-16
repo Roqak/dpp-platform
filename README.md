@@ -30,6 +30,16 @@
 
 ---
 
+## 🌐 Live Demo
+
+| Service | URL | Status |
+|---------|-----|--------|
+| **Web App** | https://dpp.ashlabs.xyz | 🟡 Staging (no services yet) |
+| **API** | https://dpp-api.ashlabs.xyz | 🟡 Staging |
+| **Swagger Docs** | https://dpp-api.ashlabs.xyz/api/docs | 🟡 Staging |
+
+*Both endpoints route through Cloudflare Tunnel. Services need to be started locally or via Docker.*
+
 ## Quick Start
 
 ```bash
@@ -47,6 +57,9 @@ npm run start:dev        # → http://localhost:3001/api/v1
 cd ../dpp-web
 npm install
 npm run dev              # → http://localhost:3000
+
+# Or use Docker Compose
+docker-compose up --build
 ```
 
 ---
@@ -137,7 +150,25 @@ Uses open-source LCA emission factors:
 
 ## Deployment
 
-### Option 1: Railway (Recommended)
+### 🚀 Already Live (Cloudflare Tunnel)
+
+The staging environment is accessible at **https://dpp.ashlabs.xyz** via Cloudflare Tunnel.
+
+To deploy your local changes to the live URL:
+
+```bash
+# Start the API
+cd dpp-api && npm run start:prod    # Serves on localhost:3001
+
+# Start the Web app
+cd dpp-web && npm run start          # Serves on localhost:3000
+```
+
+The Cloudflare Tunnel (`cloudflared-dpp.service`) automatically routes:
+- `https://dpp.ashlabs.xyz` → `http://localhost:3000`
+- `https://dpp-api.ashlabs.xyz` → `http://localhost:3001`
+
+### Option 2: Railway (Production)
 
 ```bash
 railway login
@@ -145,7 +176,7 @@ railway init
 railway up
 ```
 
-### Option 2: Docker Compose
+### Option 3: Docker Compose
 
 ```bash
 docker-compose up --build
