@@ -1,0 +1,24 @@
+{
+  "name": "dpp-platform",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Digital Product Passport platform — NestJS API + Nuxt Frontend",
+  "author": "Akin Olunloye <akin@ashlabs.xyz>",
+  "license": "MIT",
+  "workspaces": [
+    "dpp-api",
+    "dpp-web"
+  ],
+  "scripts": {
+    "dev:api": "cd dpp-api && npm run start:dev",
+    "dev:web": "cd dpp-web && npm run dev",
+    "build:api": "cd dpp-api && npm run build",
+    "build:web": "cd dpp-web && npm run build",
+    "lint": "eslint . --ext .ts,.vue",
+    "format": "prettier --write \"**/*.{ts,vue,json,md}\""
+  },
+  "devDependencies": {
+    "prettier": "^3.3.0",
+    "typescript": "^5.5.0"
+  }
+}
