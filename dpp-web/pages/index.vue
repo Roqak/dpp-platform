@@ -30,7 +30,7 @@
               <span class="font-semibold">Passports Generated</span>
             </div>
           </template>
-          <p class="text-3xl font-bold text-gray-900">{{ passports.length }}</p>
+          <p class="text-3xl font-bold text-gray-900">{{ passports?.length || 0 }}</p>
           <p class="text-sm text-gray-500 mt-1">Across all product categories</p>
         </UCard>
 
@@ -109,7 +109,7 @@ const columns = [
 ];
 
 const uniqueCountries = computed(() => {
-  if (!passports.value) return 0;
+  if (!passports.value || passports.value.length === 0) return 0;
   return new Set(passports.value.map(p => p.countryOfOrigin)).size;
 });
 </script>

@@ -2,15 +2,17 @@ FROM node:20-alpine
 
 WORKDIR /app
 
-COPY package*.json ./
-RUN npm ci
+RUN npm install -g pnpm
+
+COPY package*.json pnpm-lock.yaml ./
+RUN pnpm install
 
 COPY . .
-RUN npm run build
+RUN pnpm build
 
 EXPOSE 3010
 
 ENV NITRO_PORT=3010
-ENV NUXT_PUBLIC_API_BASE=http://localhost:3001/api/v1
+ENV NUXT_PUBLIC_API_BASE=http://api:3011/api/v1
 
 CMD ["node", ".output/server/index.mjs"]

@@ -124,4 +124,21 @@ const { data: passport, pending } = await useFetch(`/api/passports/${passportId}
   baseURL: config.public.apiBase,
   key: `passport-${passportId}`,
 });
+
+useHead({
+  title: passport.value ? `${passport.value.productName} - Digital Product Passport` : 'Loading...',
+  meta: [
+    { name: 'description', content: 'EU Digital Product Passport - Verified · GS1 Standard · 2027 Compliant' },
+  ],
+});
 </script>
+
+<style scoped>
+@media print {
+  body { background: white; }
+  .no-print { display: none; }
+  .max-w-2xl { max-width: 100%; margin: 0; padding: 0; }
+  .bg-emerald-50 { border: 2px solid #10B981; }
+  .UCard { box-shadow: none; border: 1px solid #E5E7EB; }
+}
+</style>
